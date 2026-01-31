@@ -29,6 +29,18 @@ public static class ExceptionHandler
 			_ => StatusCodes.Status500InternalServerError,
 		};
 
+		if (context.Response.StatusCode == StatusCodes.Status500InternalServerError)
+		{
+			GetLogger(context).LogError("Internal Server Error: {Message}", error.Message);
+			return;
+		}
+
+		if (context.Response.StatusCode == StatusCodes.Status501NotImplemented)
+			GetLogger(context).LogWarning("Not implemented: {Message}", error.Message);
+
 		await context.Response.WriteAsJsonAsync(new { error = error.Message });
 	}
+
+	private static ILogger<Program> GetLogger(HttpContext context) =>
+		context.RequestServices.GetRequiredService<ILogger<Program>>();
 }

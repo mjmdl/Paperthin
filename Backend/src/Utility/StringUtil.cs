@@ -1,5 +1,7 @@
 using System.Text;
 
+namespace Paperthin;
+
 public static class StringUtil
 {
 	public static string ToSnakeCase(string name)

@@ -9,7 +9,13 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("Default")));
 
+builder.Services.AddControllers();
 builder.Services.UseApiValidation();
+builder.Services.AddEndpointsApiExplorer();
+
+builder.Services.AddScoped<AccountService>();
+
+builder.Services.AddScoped<AccountRepository>();
 
 var app = builder.Build();
 
@@ -28,5 +34,6 @@ using (var scope = app.Services.CreateScope())
 
 app.UseApiExceptionHandler();
 app.UseHttpsRedirection();
+app.MapControllers();
 
 app.Run();

@@ -16,12 +16,9 @@ public static class StringUtil
 			char rune = name[i];
 
 			if (char.IsUpper(rune) && i > 0)
-			{
 				builder.Append("_");
-				builder.Append(char.ToLower(rune));
-			}
-			else
-				builder.Append(rune);
+
+			builder.Append(char.ToLower(rune));
 		}
 
 		return builder.ToString();

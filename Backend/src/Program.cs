@@ -9,6 +9,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("Default")));
 
+builder.Services.UseApiValidation();
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())

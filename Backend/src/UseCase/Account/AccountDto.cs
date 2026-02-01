@@ -29,3 +29,22 @@ public sealed class SignUpRequest
 		};
 	}
 }
+
+public sealed class LogInRequest
+{
+	[Required]
+	[Length(AccountConstraint.EmailMinLength, AccountConstraint.EmailMaxLength)]
+	[EmailAddress]
+	public string Username { get; init; } = "";
+
+	[Required]
+	[Length(AccountConstraint.PasswordMinLength, AccountConstraint.PasswordMaxLength)]
+	[RegularExpression(AccountConstraint.PasswordRegExp,
+			ErrorMessage = "The field Password must contain at least an uppercase, lowercase, digit and special character.")]
+	public string Password { get; init; } = "";
+}
+
+public sealed class LogInResponse
+{
+	public string AccessToken { get; init; } = "";
+}

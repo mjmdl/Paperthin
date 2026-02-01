@@ -26,6 +26,7 @@ public static class ExceptionHandler
 			UnauthorizedAccessException => StatusCodes.Status401Unauthorized,
 			NotImplementedException => StatusCodes.Status501NotImplemented,
 			InvalidOperationException => StatusCodes.Status409Conflict,
+			KeyNotFoundException => StatusCodes.Status404NotFound,
 			_ => StatusCodes.Status500InternalServerError,
 		};
 

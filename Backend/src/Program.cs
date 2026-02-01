@@ -3,6 +3,8 @@ using Paperthin;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.Configure<AccessTokenSettings>(builder.Configuration.GetSection("AccessTokenSettings"));
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -12,6 +14,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddControllers();
 builder.Services.UseApiValidation();
 builder.Services.AddEndpointsApiExplorer();
+
+builder.Services.AddSingleton<AccessTokenEncoder>();
 
 builder.Services.AddScoped<AccountService>();
 
